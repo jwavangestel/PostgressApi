@@ -42,8 +42,36 @@ app.get('/users/:id', (req, res)=>{
     client.end;
 })
 
+
 app.get('/events', (req, res)=>{
     client.query(`Select * from events`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
+app.get('/events/:id', (req, res)=>{
+    client.query(`Select * from events where id=${req.params.id}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
+app.get('/rana', (req, res)=>{
+    client.query(`Select * from rana`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
+app.get('/rana/:id', (req, res)=>{
+    client.query(`Select * from rana where id=${req.params.id}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
