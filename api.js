@@ -106,7 +106,7 @@ app.get('/events/:id', (req, res)=>{
 })
 
 app.get('/rana', (req, res)=>{
-    client.query(`Select * from rana`, (err, result)=>{
+    client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" from rana order by id limit 100`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
