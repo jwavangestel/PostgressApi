@@ -43,6 +43,15 @@ app.get('/users/:id', (req, res)=>{
     client.end;
 })
 
+app.get('/usr', (req, res)=>{
+    client.query(`Select * from users where lastname=${req.query.lastname} and location=${req.query.location}`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
 app.post('/users', (req, res)=> {
     const user = req.body;
     let insertQuery = `insert into users(id, firstname, lastname, location) 
