@@ -132,6 +132,18 @@ app.get('/rana/:searchArg', (req, res)=>{
     client.end;
 })
 
+app.get('/selrana', (req, res)=>{
+    const k_Naam = req.query.k_naam;
+    var k_NAam = k_Naam; 
+
+    client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" from rana where "K_NAAM" lIKE '%${req.query.k_naam}%' AND "PLAATS" = ${req.query.plaats} order by id`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
 app.get('/rna/:id', (req, res)=>{
     client.query(`Select * from rana where id=${req.params.id}`, (err, result)=>{
         if(!err){
