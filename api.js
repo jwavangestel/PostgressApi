@@ -135,7 +135,12 @@ app.get('/rana/:searchArg', (req, res)=>{
 app.get('/selrana', (req, res)=>{
 
 
-    client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" from rana where "K_NAAM" lIKE '%${req.query.k_naam}%' AND "KAD_PLAATS" LIKE '%${req.query.kad_plaats}%' order by id`, (err, result)=>{
+    client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" 
+      FROM rana 
+      WHERE "K_NAAM" lIKE '%${req.query.k_naam}%' AND 
+            (("KAD_PLAATS" LIKE '%${req.query.kad_plaats}%') OR ('${req.query.kad_plaats}' = '%' ))
+
+      ORDER BY id`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
