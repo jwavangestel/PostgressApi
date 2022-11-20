@@ -139,8 +139,8 @@ app.get('/selrana', (req, res)=>{
       FROM rana 
       WHERE "K_NAAM" lIKE '%${req.query.k_naam}%' AND 
             (("KAD_PLAATS" LIKE '%${req.query.kad_plaats}%') OR ('${req.query.kad_plaats}' = '%' )) AND
-            (("KAD_A" LIKE '%${req.query.kad_sectie}%') OR ('${req.query.kad_sectie}' = '%' ))
-
+            (("KAD_A" LIKE '%${req.query.kad_sectie}%') OR ('${req.query.kad_sectie}' = '%' ))  AND 
+            (("KAD_NR" = '${req.query.kad_kavel}') OR ("KAD_NR_2" = '${req.query.kad_kavel}')  OR ("KAD_NR_3" = '${req.query.kad_kavel}') OR ("KAD_NR_4" = '${req.query.kad_kavel}') OR ("KAD_NR_5" = '${req.query.kad_kavel}') OR ('${req.query.kad_kavel}' = '%'))
       ORDER BY id
       LIMIT 100`, (err, result)=>{
         if(!err){
