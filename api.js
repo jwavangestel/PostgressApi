@@ -137,7 +137,7 @@ app.get('/selrana', (req, res)=>{
 
     client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" 
       FROM rana 
-      WHERE "K_NAAM" lIKE '%${req.query.k_naam}%' AND 
+      WHERE LOWER("K_NAAM") lIKE LOWER('%${req.query.k_naam}%') AND 
             (("KAD_PLAATS" LIKE '%${req.query.kad_plaats}%') OR ('${req.query.kad_plaats}' = '%' )) AND
             (("KAD_A" LIKE '%${req.query.kad_sectie}%') OR ('${req.query.kad_sectie}' = '%' ))  AND 
             (("KAD_NR" = '${req.query.kad_kavel}') OR ("KAD_NR_2" = '${req.query.kad_kavel}')  OR ("KAD_NR_3" = '${req.query.kad_kavel}') OR ("KAD_NR_4" = '${req.query.kad_kavel}') OR ("KAD_NR_5" = '${req.query.kad_kavel}') OR ('${req.query.kad_kavel}' = '%'))
