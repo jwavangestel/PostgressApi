@@ -141,9 +141,15 @@ app.get('/selrana', (req, res)=>{
             (LOWER("K_NAAM") lIKE LOWER('%${req.query.k_naam}%') OR LOWER("K_NAAM_2") lIKE LOWER('%${req.query.k_naam}%')) AND 
             (("KAD_PLAATS" LIKE '%${req.query.kad_plaats}%') OR ('${req.query.kad_plaats}' = '%' )) AND
             (("KAD_A" LIKE '%${req.query.kad_sectie}%') OR ('${req.query.kad_sectie}' = '%' ))  AND 
-            (("KAD_NR" = '${req.query.kad_kavel}') OR ("KAD_NR_2" = '${req.query.kad_kavel}')  OR ("KAD_NR_3" = '${req.query.kad_kavel}') OR ("KAD_NR_4" = '${req.query.kad_kavel}') OR ("KAD_NR_5" = '${req.query.kad_kavel}') OR ('${req.query.kad_kavel}' = '%'))
-      ORDER BY id
-      LIMIT 100`, (err, result)=>{
+            (("KAD_NR" = '${req.query.kad_kavel}') OR ("KAD_NR_2" = '${req.query.kad_kavel}')  OR ("KAD_NR_3" = '${req.query.kad_kavel}') OR ("KAD_NR_4" = '${req.query.kad_kavel}') OR ("KAD_NR_5" = '${req.query.kad_kavel}') OR ('${req.query.kad_kavel}' = '%')) AND
+            (("RA_OF_NA" LIKE '%${req.query.ra_of_na}%') OR ('${req.query.ra_of_na}' = '%' ))  AND 
+            (("REGISTER" LIKE '%${req.query.register}%') OR ('${req.query.register}' = '%' ))  AND 
+            (("FOLIO" LIKE '%${req.query.folio}%') OR ('${req.query.folio}' = '%' ))  AND 
+            (("DATUM" LIKE '%${req.query.datum}%') OR ('${req.query.datum}' = '%' ))  AND 
+            (("PLAATS" LIKE '%${req.query.plaats}%') OR ('${req.query.plaats}' = '%' ))  AND 
+            (("KAART_NR" LIKE '%${req.query.kaart_nr}%') OR ('${req.query.kaart_nr}' = '%' ))
+            ORDER BY id
+      LIMIT 250`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
