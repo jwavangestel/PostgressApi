@@ -132,9 +132,16 @@ app.get('/rana/:searchArg', (req, res)=>{
     client.end;
 })
 
+app.get('/totRec', (req, res)=>{
+    client.query(`Select count(*) FROM rana`, (err, result)=>{
+        if(!err){
+            res.send(result.rows);
+        }
+    });
+    client.end;
+})
+
 app.get('/selrana', (req, res)=>{
-
-
     client.query(`Select id, "RA_OF_NA", "REGISTER", "FOLIO", "DATUM", "PLAATS", kaart_nr, "V_NAAM", "V_NAAM_2", "K_NAAM", "K_NAAM_2", "KAD_PLAATS", "KAD_A", "KAD_NR", "KAD_NR_2", "KAD_NR_3", "KAD_NR_4" 
       FROM rana 
       WHERE (LOWER("V_NAAM") lIKE LOWER('%${req.query.v_naam}%') OR LOWER("V_NAAM_2") lIKE LOWER('%${req.query.v_naam}%')) AND 
