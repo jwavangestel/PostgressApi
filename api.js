@@ -168,7 +168,7 @@ app.get('/selrana', (req, res)=>{
             (("PLAATS" LIKE '%${req.query.plaats}%') OR ('${req.query.plaats}' = '%' ))  AND 
             (("KAART_NR" LIKE '%${req.query.kaart_nr}%') OR ('${req.query.kaart_nr}' = '%' ))
             ORDER BY id
-      LIMIT 250`, (err, result)=>{
+      LIMIT 100 OFFSET ${req.query.offset}`, (err, result)=>{
         if(!err){
             res.send(result.rows);
         }
